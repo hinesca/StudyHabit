@@ -6,10 +6,13 @@
         xmlns:View="clr-namespace:StudyHabit.View"
         xmlns:ViewModel="clr-namespace:StudyHabit.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="525" Width="320">
+        Title="MainWindow" Height="450" Width="250">
      <Window.Resources>
           <DataTemplate DataType="{x:Type ViewModel:LoginVM}">
                <View:LoginView/>
           </DataTemplate>
      </Window.Resources>
+     <Grid>
+          <View:LoginView/>
+     </Grid>
 </Window>

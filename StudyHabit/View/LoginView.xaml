@@ -5,8 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudyHabit"
              mc:Ignorable="d" 
-             d:DesignHeight="525" Width="320">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="350" Width="175">
+     <StackPanel>
+          <TextBlock Text="User Login" Margin="5" FontSize="20" HorizontalAlignment="Center"/>
+          <StackPanel Orientation="Horizontal">
+               <TextBlock Text="Username" Margin="5"/>
+               <TextBox Text="{Binding Username}" Width="100" Margin="5"/>
+          </StackPanel>
+     </StackPanel>
 </UserControl>

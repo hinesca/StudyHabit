@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudyHabit.ViewModel
+namespace StudyHabit.Model
 {
-     public class LoginVM : ViewModelBase
+     public class User
      {
-          public string MyProperty { get; set; }
      }
 }
