@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+/// <summary>
+/// The View Model base class. All view models inherit from this class
+/// </summary>
 namespace StudyHabit.ViewModel
 {
      public class ViewModelBase : INotifyPropertyChanged

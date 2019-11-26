@@ -6,11 +6,46 @@
              xmlns:local="clr-namespace:StudyHabit"
              mc:Ignorable="d" 
              d:DesignHeight="350" Width="175">
+     <UserControl.Resources>
+          <local:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+     </UserControl.Resources>
      <StackPanel>
-          <TextBlock Text="User Login" Margin="5" FontSize="20" HorizontalAlignment="Center"/>
-          <StackPanel Orientation="Horizontal">
-               <TextBlock Text="Username" Margin="5"/>
-               <TextBox Text="{Binding Username}" Width="100" Margin="5"/>
-          </StackPanel>
+          <TextBlock
+               Text="Study Habit"
+               FontSize="40"
+               TextWrapping="Wrap"
+               TextAlignment="Center"/>
+          <TextBlock Text="{Binding Prompt}" Margin="5" FontSize="20" HorizontalAlignment="Center"/>
+          <CheckBox Content="New User" IsChecked="{Binding IsNewUser}" Margin="5"/>
+          <DockPanel>
+               <TextBlock Text="Username" Margin="5" Width="55"/>
+               <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+          </DockPanel>
+          <DockPanel>
+               <TextBlock Text="Password" Width="55" Margin="5"/>
+               <PasswordBox x:Name="PasswordBox" Margin="5" />
+          </DockPanel>
+          <DockPanel Visibility="{Binding IsNewUser, Converter={StaticResource BoolToVisibility}}">
+               <TextBlock Text="Confirm" Width="55" Margin="5"/>
+               <PasswordBox x:Name="ConfirmPasswordBox" Margin="5"/>
+          </DockPanel>
+          <Button
+               Content="Login"
+               Command="{Binding LoginCommand}"
+               Margin="5"
+               Visibility="{Binding IsNotNewUser, Converter={StaticResource BoolToVisibility}}"/>
+          <CheckBox
+               IsChecked="{Binding UserAgrees}"
+               Visibility="{Binding IsNewUser, Converter={StaticResource BoolToVisibility}}">
+               <TextBlock Text="I have read and understood the EULA" TextWrapping="Wrap"/>
+          </CheckBox>
+          <Grid Margin="5" Visibility="{Binding IsNewUser, Converter={StaticResource BoolToVisibility}}">
+               <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+               </Grid.ColumnDefinitions>
+               <Button Content="Create" Command="{Binding NewAccountCommand}" Grid.Column="0"/>
+               <Button Content="EULA" Command="{Binding ShowEULACommand}" Grid.Column="1"/>
+          </Grid>
      </StackPanel>
 </UserControl>
