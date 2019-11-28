@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\CourseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -70,9 +74,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Course.cs" />
     <Compile Include="Model\ModelBase.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="ViewModel\CourseVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\CourseView.xaml.cs">
+      <DependentUpon>CourseView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
