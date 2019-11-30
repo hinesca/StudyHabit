@@ -6,13 +6,19 @@
         xmlns:View="clr-namespace:StudyHabit.View"
         xmlns:ViewModel="clr-namespace:StudyHabit.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="250">
-     <Window.Resources>
-          <DataTemplate DataType="{x:Type ViewModel:LoginVM}">
-               <View:LoginView/>
-          </DataTemplate>
-     </Window.Resources>
+        Title="MainWindow" Height="400" Width="200">
      <Grid>
-          <View:LoginView/>
+          <TabControl x:Name="Tabs" Visibility="Hidden">
+               <TabItem Header="Courses">
+                    <View:CourseView/>
+               </TabItem>
+               <TabItem Header="Calendar">
+                    
+               </TabItem>
+               <TabItem Header="Study">
+                    
+               </TabItem>
+          </TabControl>
+          <View:LoginView x:Name="Login"/>
      </Grid>
 </Window>

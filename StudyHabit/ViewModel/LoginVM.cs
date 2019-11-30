@@ -15,12 +15,12 @@ namespace StudyHabit.ViewModel
           /// <summary>
           /// Constructor
           /// </summary>
-          public LoginVM(LoginView view)
+          public LoginVM()
           {
                /* Coupling the View and ViewModel like this breaks MVVM.
                 * We don't normally do this, but it is necessary in this situation
                 * to keep the user's password secure.*/
-               View = view;
+               View = (MainWindow)Application.Current.MainWindow;
                User = new User();
                PropertyChanged += OnPropertyChanged;
                LoginCommand = new RelayCommand(Login, LoginCanExecute);
@@ -32,7 +32,7 @@ namespace StudyHabit.ViewModel
            * LoginVM Properties
            * *****************************************************************/
           public User User {get; set;}
-          private LoginView View { get; set; }
+          private MainWindow View { get; set; }
 
           public string Prompt
           {
@@ -92,7 +92,7 @@ namespace StudyHabit.ViewModel
 
           private void Login(object o)
           {
-               //throw new NotImplementedException();
+               View.SwichToTabs();
           }
 
           private bool LoginCanExecute(object o)
@@ -102,9 +102,15 @@ namespace StudyHabit.ViewModel
                else return false;
           }
 
+          /// <summary>
+          /// We are not using a remote database atm.
+          /// This method only needs to call the login command.
+          /// </summary>
+          /// <param name="o"></param>
           private void NewAccount(object o)
           {
-               //throw new NotImplementedException();
+               //DataAccess.AddUser(Username, View.PasswordBox.Password);
+               Login(0);
           }
 
           private bool NewAccountCanExecute(object o)

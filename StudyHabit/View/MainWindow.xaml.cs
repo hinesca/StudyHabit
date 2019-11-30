@@ -14,6 +14,13 @@ namespace StudyHabit.View
           public MainWindow()
           {
                InitializeComponent();
+               Tabs.Visibility = Visibility.Hidden;
+          }
+
+          public void SwichToTabs()
+          {
+               Login.Visibility = Visibility.Hidden;
+               Tabs.Visibility = Visibility.Visible;
           }
      }
 }

@@ -12,7 +12,7 @@ namespace StudyHabit.View
           public LoginView()
           {
                InitializeComponent();
-               DataContext = new LoginVM(this);
+               DataContext = new LoginVM();
           }
      }
 }

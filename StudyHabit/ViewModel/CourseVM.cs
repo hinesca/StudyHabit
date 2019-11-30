@@ -5,6 +5,15 @@ namespace StudyHabit.ViewModel
 {
      public class CourseVM : ViewModelBase
      {
+          public CourseVM()
+          {
+               AddCourseCommand = new RelayCommand(AddCourse);
+          }
+          
+          /********************************************************************
+           * LoginVM Properties
+           * *****************************************************************/
+
           private ObservableCollection<Course> _courseList;
           public ObservableCollection<Course> CourseList
           {
@@ -48,9 +57,14 @@ namespace StudyHabit.ViewModel
                }
           }
 
+          /********************************************************************
+           * CourseVM Commands and Command Properties
+           * *****************************************************************/
+           public RelayCommand AddCourseCommand { get; private set; }
 
+          public void AddCourse(object o)
+          {
 
-
-
+          }
      }
 }
