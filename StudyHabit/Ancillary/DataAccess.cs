@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Configuration;
 using System.Collections.Generic;
+using System.IO;
 
 namespace StudyHabit
 {
@@ -20,7 +21,10 @@ namespace StudyHabit
                DataTable table = new DataTable();
                try
                {
-                    string cnnStr = ConfigurationManager.ConnectionStrings["StudyHabitDB"].ConnectionString;
+
+                    //string cnnStr = ConfigurationManager.ConnectionStrings["StudyHabitDB"].ConnectionString;
+                    string database = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "StudyHabitDB.mdf");
+                    string cnnStr = $"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename={database};Integrated Security = True; Connect Timeout = 30";
 
                     using (SqlConnection connection = new SqlConnection(cnnStr))
                     {
@@ -61,6 +65,15 @@ namespace StudyHabit
                string sql = "insert into Users(username, password)" +
                     "output inserted.*" +
                     $"values('{userName}', '{pw}')";
+
+               return GetData(sql);
+          }
+
+          public static DataTable AddCourse(string name, string type, string designation)
+          {
+               string sql = "insert into Course(Name, CourseType, Designation)" +
+                    "output inserted.*" +
+                    $"values('{name}', '{type}', '{designation}')";
 
                return GetData(sql);
           }

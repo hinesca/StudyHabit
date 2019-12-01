@@ -1,4 +1,6 @@
-﻿namespace StudyHabit.Model
+﻿using System;
+
+namespace StudyHabit.Model
 {
 
     public class StudySession

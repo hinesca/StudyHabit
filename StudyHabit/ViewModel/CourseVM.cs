@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Data;
 using StudyHabit.Model;
 
 namespace StudyHabit.ViewModel
@@ -60,11 +61,12 @@ namespace StudyHabit.ViewModel
           /********************************************************************
            * CourseVM Commands and Command Properties
            * *****************************************************************/
-           public RelayCommand AddCourseCommand { get; private set; }
+          public RelayCommand AddCourseCommand { get; private set; }
 
           public void AddCourse(object o)
           {
-
+               DataTable temp = DataAccess.AddCourse("TestCourse", "Science", "TST 101");
+               string tempS = "";
           }
      }
 }
