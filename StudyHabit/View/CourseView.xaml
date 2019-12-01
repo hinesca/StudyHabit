@@ -10,10 +10,18 @@
           <local:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
      </UserControl.Resources>
      <DockPanel>
-
-          <GroupBox Header="New Course" DockPanel.Dock="Top">
+          <CheckBox
+               IsChecked="{Binding IsUserAddingCourse}"
+               Content="Add New Course" DockPanel.Dock="Top"/>
+          <GroupBox
+               Header="New Course"
+               DockPanel.Dock="Top"
+               Visibility="{Binding IsUserAddingCourse, Converter={StaticResource BoolToVisibility}}">
                <Grid>
                     <Grid.RowDefinitions>
+                         <RowDefinition/>
+                         <RowDefinition/>
+                         <RowDefinition/>
                          <RowDefinition/>
                          <RowDefinition/>
                          <RowDefinition/>
@@ -22,43 +30,71 @@
                          <ColumnDefinition Width="1*"/>
                          <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
+                    <!--Row 0-->
                     <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0"/>
-                    <TextBox Text="{Binding NewCourseName}" Grid.Row="0" Grid.Column="1"/>
-                    <TextBlock Text="Type:" Grid.Row="1" Grid.Column="0"/>
-                    <ComboBox Grid.Row="1" Grid.Column="1">
+                    <TextBox Text="{Binding NewCourseName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"/>
+                    <!--Row 1-->
+                    <TextBlock Text="Code:" Grid.Row="1" Grid.Column="0"/>
+                    <TextBox Text="{Binding NewCourseCode, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"/>
+                    <!--Row 2-->
+                    <TextBlock Text="Type:" Grid.Row="2" Grid.Column="0"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" Text="{Binding NewCourseType, UpdateSourceTrigger=PropertyChanged}">
                          <ComboBoxItem Content="Math"/>
                          <ComboBoxItem Content="Writing"/>
                          <ComboBoxItem Content="Science"/>
                          <ComboBoxItem Content="Language"/>
                          <ComboBoxItem Content="Other"/>
                     </ComboBox>
+                    <!--Row 3-->
+                    <TextBlock Text="Term:" Grid.Row="3" Grid.Column="0"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" Text="{Binding NewCourseTerm, UpdateSourceTrigger=PropertyChanged}">
+                         <ComboBoxItem Content="Winter"/>
+                         <ComboBoxItem Content="Spring"/>
+                         <ComboBoxItem Content="Summer"/>
+                         <ComboBoxItem Content="Fall"/>
+                    </ComboBox>
+                    <!--Row 4-->
+                    <TextBlock Text="Year:" Grid.Row="4" Grid.Column="0"/>
+                    <ComboBox Grid.Row="4" Grid.Column="1" Text="{Binding NewCourseYear, UpdateSourceTrigger=PropertyChanged}">
+                         <ComboBoxItem Content="2019"/>
+                         <ComboBoxItem Content="2020"/>
+                    </ComboBox>
+                    <!--Row 5-->
                     <Button
                          Command="{Binding AddCourseCommand}"
                          DockPanel.Dock="Top"
                          Width="70"
                          Content="Add"
                          HorizontalAlignment="Right"
-                         Grid.Row="2"
+                         Grid.Row="5"
                          Grid.Column="1"/>
                </Grid>
           </GroupBox>
           <ListView
-               x:Name="CourseLV"
-               DataContext="{Binding CourseList}"
+               x:Name="CourseLV"               
+               ItemsSource="{Binding CourseList}"
                DockPanel.Dock="Top"
                HorizontalAlignment="Stretch"
                Padding="5">
-               <DataTemplate>
-                    <StackPanel
-                        Height="{Binding ActualHeight, ElementName=CourseLV}"
-                        Width="30"
-                        Background="LightSteelBlue">
-                         <TextBlock Text="{Binding Name}"/>
-                         <TextBlock Text="{Binding Number}"/>
-                         <TextBlock Text="{Binding Term}"/>
-                    </StackPanel>
-               </DataTemplate>
+               <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                         <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+               </ListView.ItemsPanel>
+               <ListView.ItemTemplate>
+                    <DataTemplate>
+                         <StackPanel
+                              Background="LightSteelBlue">
+                              <TextBlock Text="{Binding Name}"/>
+                              <TextBlock Text="{Binding Code}"/>
+                              <TextBlock Text="{Binding Term}"/>
+                              <TextBlock Text="{Binding Year}"/>
+                         </StackPanel>
+                    </DataTemplate>
+               </ListView.ItemTemplate>
+
           </ListView>
+          
           <TextBlock Text="{Binding SelectedCourseName}"/>
           <StackPanel Orientation="Horizontal">
                <ListView>

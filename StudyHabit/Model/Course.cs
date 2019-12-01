@@ -2,15 +2,23 @@
 
 namespace StudyHabit.Model
 {
-     public class Course
+     public class Course : ModelBase
      {
-          public string Name { get; set; }
-          public int ID { get; set; }
-          public string Prefix { get; set; }
-          public int Code { get; set; }
-          public string Season { get; set; }
-          public int Year { get; set; }
-          public List<StudySession> StudySessions { get; set; }
-          public List<string> StudyObjects { get; set; }
+          public Course(int id, string name, string type, string code, string term, string year)
+          {
+               ID = id;
+               Name = name;
+               CourseType = type;
+               Code = code;
+               Term = term;
+               Year = year;
+          }
+
+          public string CourseType { get; set; }
+          public string Code { get; set; }
+          public string Term { get; set; }
+          public string Year { get; set; }
+          public List<StudySession> StudySessions { get; set; } = new List<StudySession>();
+          public List<string> StudyObjects { get; set; } = new List<string>();
      }
 }

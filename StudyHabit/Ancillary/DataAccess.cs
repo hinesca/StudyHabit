@@ -69,12 +69,19 @@ namespace StudyHabit
                return GetData(sql);
           }
 
-          public static DataTable AddCourse(string name, string type, string designation)
+          public static DataTable AddCourse(string name, string type, string code, string term, string year)
           {
-               string sql = "insert into Course(Name, CourseType, Designation)" +
+               string sql =
+                    "insert into Course(Name, CourseType, Code, Term, Year)" +
                     "output inserted.*" +
-                    $"values('{name}', '{type}', '{designation}')";
+                    $"values('{name}', '{type}', '{code}', '{term}', '{year}')";
 
+               return GetData(sql);
+          }
+
+          public static DataTable GetCourses()
+          {
+               string sql = "select * from Course";
                return GetData(sql);
           }
      }

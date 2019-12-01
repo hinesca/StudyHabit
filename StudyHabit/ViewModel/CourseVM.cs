@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using StudyHabit.Model;
 
@@ -8,18 +9,24 @@ namespace StudyHabit.ViewModel
      {
           public CourseVM()
           {
-               AddCourseCommand = new RelayCommand(AddCourse);
+               AddCourseCommand = new RelayCommand(AddCourse, AddCourseCanExecute);
+               UpdateData();
           }
-          
+
+
           /********************************************************************
            * LoginVM Properties
            * *****************************************************************/
 
-          private ObservableCollection<Course> _courseList;
-          public ObservableCollection<Course> CourseList
+          private List<Course> _courseList;
+          public List<Course> CourseList
           {
                get { return _courseList; }
-               set { _courseList = value; }
+               set
+               {
+                    _courseList = value;
+                    NotifyPropertyChanged();
+               }
           }
 
           private Course _selectedCourse;
@@ -34,21 +41,9 @@ namespace StudyHabit.ViewModel
                }
           }
 
-          private string _selectedCourseName;
+          private List<string> _todoList;
 
-          public string SelectedCourseName
-          {
-               get { return _selectedCourseName; }
-               set
-               {
-                    _selectedCourseName = value;
-                    NotifyPropertyChanged();
-               }
-          }
-
-          private ObservableCollection<string> _todoList;
-
-          public ObservableCollection<string> ToDoList
+          public List<string> ToDoList
           {
                get { return _todoList; }
                set
@@ -58,6 +53,27 @@ namespace StudyHabit.ViewModel
                }
           }
 
+
+          private bool _isUserAddingCourse = false;
+
+          public bool IsUserAddingCourse
+          {
+               get { return _isUserAddingCourse; }
+               set
+               {
+                    _isUserAddingCourse = value;
+                    NotifyPropertyChanged();
+               }
+          }
+
+          public string NewCourseName { get; set; }
+          public string NewCourseCode { get; set; }
+          public string NewCourseType { get; set; }
+          public string NewCourseTerm { get; set; }
+          public string NewCourseYear { get; set; }
+
+
+
           /********************************************************************
            * CourseVM Commands and Command Properties
            * *****************************************************************/
@@ -65,8 +81,43 @@ namespace StudyHabit.ViewModel
 
           public void AddCourse(object o)
           {
-               DataTable temp = DataAccess.AddCourse("TestCourse", "Science", "TST 101");
-               string tempS = "";
+               DataTable temp = DataAccess.AddCourse(NewCourseName, NewCourseType, NewCourseCode, NewCourseTerm, NewCourseYear);
+               UpdateData();
+          }
+
+          private bool AddCourseCanExecute(object o)
+          {
+               if (
+                    string.IsNullOrWhiteSpace(NewCourseName) ||
+                    string.IsNullOrWhiteSpace(NewCourseCode) ||
+                    string.IsNullOrWhiteSpace(NewCourseType) ||
+                    string.IsNullOrWhiteSpace(NewCourseTerm) ||
+                    string.IsNullOrWhiteSpace(NewCourseYear)
+                  )
+                    return false;
+               else return true;
+          }
+
+          /********************************************************************
+           * CourseVM Methods
+           * *****************************************************************/
+          private void UpdateData()
+          {
+               DataTable courseTable = DataAccess.GetCourses();
+               List<Course> courseList = new List<Course>();
+
+               foreach (DataRow row in courseTable.Rows)
+               {
+                    courseList.Add(new Course(
+                         (int)row["Id"],
+                         (string)row["Name"],
+                         (string)row["CourseType"],
+                         (string)row["Code"],
+                         (string)row["Term"],
+                         (string)row["Year"]));
+               }
+
+               CourseList = courseList;
           }
      }
 }
