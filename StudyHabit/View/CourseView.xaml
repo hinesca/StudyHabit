@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudyHabit"
+             xmlns:view="clr-namespace:StudyHabit.View"
              mc:Ignorable="d"
              d:DesignHeight="350" Width="175">
      <UserControl.Resources>
@@ -13,64 +14,8 @@
           <CheckBox
                IsChecked="{Binding IsUserAddingCourse}"
                Content="Add New Course" DockPanel.Dock="Top"/>
-          <GroupBox
-               Header="New Course"
-               DockPanel.Dock="Top"
-               Visibility="{Binding IsUserAddingCourse, Converter={StaticResource BoolToVisibility}}">
-               <Grid>
-                    <Grid.RowDefinitions>
-                         <RowDefinition/>
-                         <RowDefinition/>
-                         <RowDefinition/>
-                         <RowDefinition/>
-                         <RowDefinition/>
-                         <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                         <ColumnDefinition Width="1*"/>
-                         <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <!--Row 0-->
-                    <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0"/>
-                    <TextBox Text="{Binding NewCourseName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"/>
-                    <!--Row 1-->
-                    <TextBlock Text="Code:" Grid.Row="1" Grid.Column="0"/>
-                    <TextBox Text="{Binding NewCourseCode, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"/>
-                    <!--Row 2-->
-                    <TextBlock Text="Type:" Grid.Row="2" Grid.Column="0"/>
-                    <ComboBox Grid.Row="2" Grid.Column="1" Text="{Binding NewCourseType, UpdateSourceTrigger=PropertyChanged}">
-                         <ComboBoxItem Content="Math"/>
-                         <ComboBoxItem Content="Writing"/>
-                         <ComboBoxItem Content="Science"/>
-                         <ComboBoxItem Content="Language"/>
-                         <ComboBoxItem Content="Other"/>
-                    </ComboBox>
-                    <!--Row 3-->
-                    <TextBlock Text="Term:" Grid.Row="3" Grid.Column="0"/>
-                    <ComboBox Grid.Row="3" Grid.Column="1" Text="{Binding NewCourseTerm, UpdateSourceTrigger=PropertyChanged}">
-                         <ComboBoxItem Content="Winter"/>
-                         <ComboBoxItem Content="Spring"/>
-                         <ComboBoxItem Content="Summer"/>
-                         <ComboBoxItem Content="Fall"/>
-                    </ComboBox>
-                    <!--Row 4-->
-                    <TextBlock Text="Year:" Grid.Row="4" Grid.Column="0"/>
-                    <ComboBox Grid.Row="4" Grid.Column="1" Text="{Binding NewCourseYear, UpdateSourceTrigger=PropertyChanged}">
-                         <ComboBoxItem Content="2019"/>
-                         <ComboBoxItem Content="2020"/>
-                    </ComboBox>
-                    <!--Row 5-->
-                    <Button
-                         Command="{Binding AddCourseCommand}"
-                         DockPanel.Dock="Top"
-                         Width="70"
-                         Content="Add"
-                         HorizontalAlignment="Right"
-                         Grid.Row="5"
-                         Grid.Column="1"/>
-               </Grid>
-          </GroupBox>
-          <ListView
+        <view:AddCourseView/>
+        <ListView
                x:Name="CourseLV"               
                ItemsSource="{Binding CourseList}"
                DockPanel.Dock="Top"
