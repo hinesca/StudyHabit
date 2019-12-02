@@ -22,9 +22,9 @@ namespace StudyHabit
                try
                {
 
-                    //string cnnStr = ConfigurationManager.ConnectionStrings["StudyHabitDB"].ConnectionString;
-                    string database = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "StudyHabitDB.mdf");
-                    string cnnStr = $"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename={database};Integrated Security = True; Connect Timeout = 30";
+                    //string cnnStr = ConfigurationManager.ConnectionStrings["StudyHabitDB"].ConnectionString;  // For remote DB in App.config
+                    //string database = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "StudyHabitDB.mdf"); // local DB in app direcotry
+                    string cnnStr = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\StudyHabitDB.mdf;Integrated Security = True; Connect Timeout = 30";
 
                     using (SqlConnection connection = new SqlConnection(cnnStr))
                     {
