@@ -66,6 +66,7 @@ namespace StudyHabit.ViewModel
                }
           }
 
+
           public string NewCourseName { get; set; }
           public string NewCourseCode { get; set; }
           public string NewCourseType { get; set; }
@@ -81,7 +82,7 @@ namespace StudyHabit.ViewModel
 
           public void AddCourse(object o)
           {
-               DataTable temp = DataAccess.AddCourse(NewCourseName, NewCourseType, NewCourseCode, NewCourseTerm, NewCourseYear);
+               DataAccess.AddCourse(NewCourseName, NewCourseType, NewCourseCode, NewCourseTerm, NewCourseYear);
                UpdateData();
           }
 
@@ -115,6 +116,7 @@ namespace StudyHabit.ViewModel
                          (string)row["Code"],
                          (string)row["Term"],
                          (string)row["Year"]));
+
                }
 
                CourseList = courseList;
