@@ -41,16 +41,14 @@
           </ListView>
           
           <TextBlock Text="{Binding SelectedCourseName}"/>
-          <StackPanel Orientation="Horizontal">
-               <ListView>
-
-               </ListView>
-               <StackPanel>
-                    <TextBlock Text="To Do" FontWeight="Bold"/>
-                    <ListView>
-
-                    </ListView>
-               </StackPanel>
-          </StackPanel>
-     </DockPanel>
+          <DockPanel DockPanel.Dock="Top">
+              <TextBlock Text="Expected Grade" DockPanel.Dock="Left"/>
+              <ComboBox Text="{Binding ExpectedGrade}">
+                  <ComboBoxItem Content="A"/>
+                  <ComboBoxItem Content="B"/>
+                  <ComboBoxItem Content="C"/>
+              </ComboBox>
+          </DockPanel>
+          <Expander DockPanel.Dock="Top"/>
+    </DockPanel>
 </UserControl>
