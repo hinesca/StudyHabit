@@ -70,42 +70,38 @@
                          Grid.Column="1"/>
                </Grid>
           </GroupBox>
-          <ListView
+        <ListView
                x:Name="CourseLV"               
                ItemsSource="{Binding CourseList}"
                DockPanel.Dock="Top"
                HorizontalAlignment="Stretch"
                Padding="5">
-               <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                         <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-               </ListView.ItemsPanel>
-               <ListView.ItemTemplate>
-                    <DataTemplate>
-                         <StackPanel
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel
                               Background="LightSteelBlue">
-                              <TextBlock Text="{Binding Name}"/>
-                              <TextBlock Text="{Binding Code}"/>
-                              <TextBlock Text="{Binding Term}"/>
-                              <TextBlock Text="{Binding Year}"/>
-                         </StackPanel>
-                    </DataTemplate>
-               </ListView.ItemTemplate>
-
-          </ListView>
-          
-          <TextBlock Text="{Binding SelectedCourseName}"/>
-          <StackPanel Orientation="Horizontal">
-               <ListView>
-
-               </ListView>
-               <StackPanel>
-                    <TextBlock Text="To Do" FontWeight="Bold"/>
-                    <ListView>
-
-                    </ListView>
-               </StackPanel>
-          </StackPanel>
-     </DockPanel>
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding Code}"/>
+                        <TextBlock Text="{Binding Term}"/>
+                        <TextBlock Text="{Binding Year}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBlock Text="{Binding SelectedCourseName}"/>
+        <DockPanel DockPanel.Dock="Top">
+            <TextBlock Text="Expected Grade" DockPanel.Dock="Left"/>
+            <ComboBox Text="{Binding ExpectedGrade}">
+                <ComboBoxItem Content="A"/>
+                <ComboBoxItem Content="B"/>
+                <ComboBoxItem Content="C"/>
+            </ComboBox>
+        </DockPanel>
+        <Expander DockPanel.Dock="Top"/>
+    </DockPanel>
 </UserControl>
