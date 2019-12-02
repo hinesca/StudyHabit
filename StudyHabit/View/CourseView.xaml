@@ -14,7 +14,7 @@
           <CheckBox
                IsChecked="{Binding IsUserAddingCourse}"
                Content="Add New Course" DockPanel.Dock="Top"/>
-        <view:AddCourseView/>
+        <view:AddCourseView DockPanel.Dock="Top"/>
         <ListView
                x:Name="CourseLV"               
                ItemsSource="{Binding CourseList}"
@@ -37,9 +37,7 @@
                          </StackPanel>
                     </DataTemplate>
                </ListView.ItemTemplate>
-
-          </ListView>
-          
+          </ListView>          
           <TextBlock Text="{Binding SelectedCourseName}"/>
           <DockPanel DockPanel.Dock="Top">
               <TextBlock Text="Expected Grade" DockPanel.Dock="Left"/>
