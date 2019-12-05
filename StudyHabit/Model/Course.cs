@@ -4,7 +4,7 @@ namespace StudyHabit.Model
 {
      public class Course : ModelBase
      {
-          public Course(int id, string name, string type, string code, string term, string year)
+          public Course(long id, string name, string type, string code, string term, string year)
           {
                ID = id;
                Name = name;

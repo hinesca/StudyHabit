@@ -2,7 +2,7 @@
 {
      public class ModelBase
      {
-          public int ID { get; set; }
+          public long ID { get; set; }
           public string Name { get; set; }
      }
 }

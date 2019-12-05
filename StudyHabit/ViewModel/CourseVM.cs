@@ -110,13 +110,12 @@ namespace StudyHabit.ViewModel
                foreach (DataRow row in courseTable.Rows)
                {
                     courseList.Add(new Course(
-                         (int)row["Id"],
+                         (long)row["Id"],
                          (string)row["Name"],
                          (string)row["CourseType"],
                          (string)row["Code"],
                          (string)row["Term"],
                          (string)row["Year"]));
-
                }
 
                CourseList = courseList;

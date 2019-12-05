@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System;
 using System.Windows;
+using System.Data.SQLite;
 using System.Configuration;
 using System.Collections.Generic;
 using System.IO;
@@ -24,11 +25,12 @@ namespace StudyHabit
 
                     //string cnnStr = ConfigurationManager.ConnectionStrings["StudyHabitDB"].ConnectionString;  // For remote DB in App.config
                     //string database = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "StudyHabitDB.mdf"); // local DB in app direcotry
-                    string cnnStr = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\StudyHabitDB.mdf;Integrated Security = True; Connect Timeout = 30";
+                    //string cnnStr = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\StudyHabitDB.mdf;Integrated Security = True; Connect Timeout = 30";
+                    string cnnStr = "Data Source = |DataDirectory|\\StudyHabitDB.db; Version = 3";
 
-                    using (SqlConnection connection = new SqlConnection(cnnStr))
+                    using (SQLiteConnection connection = new SQLiteConnection(cnnStr))
                     {
-                         using (SqlDataAdapter adapter = new SqlDataAdapter(sql, connection))
+                         using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, connection))
                          {
                               adapter.Fill(table);
                          }
@@ -73,7 +75,6 @@ namespace StudyHabit
           {
                string sql =
                     "insert into Course(Name, CourseType, Code, Term, Year)" +
-                    "output inserted.*" +
                     $"values('{name}', '{type}', '{code}', '{term}', '{year}')";
 
                return GetData(sql);
