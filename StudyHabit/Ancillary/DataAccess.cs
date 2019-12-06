@@ -101,12 +101,27 @@ namespace StudyHabit
                 return GetData(sql);
           }
 
-
-          public static DataTable AddFlashCard(int courseID, string question, string answer)
+          public static DataTable AddFlashCardDeck(int courseId, string name)
           {
             string sql =
-                "insert into FlashCard(CourseID, Question, Answer)" +
-                $"values('{courseID}', '{question}', '{answer}')";
+                "insert into FlashCardDeck(CourseId, Name)" +
+                $"values('{courseId}', '{name}')";
+            return GetData(sql);
+
+          }
+
+          public static DataTable GetAllDecks()
+          {
+                string sql = "select * from FlashCardDeck";
+                return GetData(sql);
+          }
+
+
+          public static DataTable AddFlashCard(int deckID, string question, string answer)
+          {
+            string sql =
+                "insert into FlashCard(FlashCardDeckID, Question, Answer)" +
+                $"values('{deckID}', '{question}', '{answer}')";
             return GetData(sql);
           }
 
@@ -116,10 +131,10 @@ namespace StudyHabit
                 return GetData(sql);
           }
 
-          public static DataTable GetCourseFlashCards(int courseID)
+          public static DataTable GetDeckFlashCards(int deckID)
           {
                 string sql =
-                    $"select * from FlashCard where CourseID={courseID}";
+                    $"select * from FlashCard where FlashCardDeckID={deckID}";
                 return GetData(sql);
           }
 
