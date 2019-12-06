@@ -85,5 +85,20 @@ namespace StudyHabit
                string sql = "select * from Course";
                return GetData(sql);
           }
+
+          public static DataTable AddSession(string startTime, string duration, string courseID)
+          {
+                string sql =
+                    "insert into StudySession(StartTime, Duration, CourseID)" +
+                    $"values('{startTime}', '{duration}', '{courseID}')";
+
+            return GetData(sql);
+          }
+
+          public static DataTable GetStudySession()
+          {
+                string sql = "select * from StudySession";
+                return GetData(sql);
+          }
      }
 }

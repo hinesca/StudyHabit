@@ -11,5 +11,6 @@ namespace StudyHabit.Model
           public string Password { get; set; }
           public string EMail { get; set; }
           public List<Course> CourseList { get; set; }
+          public List<StudySession> SessionList { get; set; }
      }
 }

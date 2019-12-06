@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="StudyHabit.View.StudySessionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StudyHabit"
+             xmlns:view="clr-namespace:StudyHabit.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="175">
+    <UserControl.Resources>
+        <local:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </UserControl.Resources>
+    <DockPanel>
+        <CheckBox
+            IsChecked="{Binding IsUserAddingSession}"
+            Content="Add New Study Session" DockPanel.Dock="Top"/>
+        <view:AddStudySessionView DockPanel.Dock="Top"/>
+        <ListView
+            x:Name="SessionLV"
+            ItemsSource="{Binding SessionList}"
+            DockPanel.Dock="Top"
+            HorizontalAlignment="Stretch"
+            Padding="5">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel
+                        Background="LightSteelBlue">
+                        <TextBlock Text="{Binding Duration}"/>
+                        <TextBlock Text="{Binding CourseID}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+        <DockPanel DockPanel.Dock="Top"/>
+    </DockPanel>
+</UserControl>

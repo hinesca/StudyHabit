@@ -10,6 +10,7 @@ namespace StudyHabit.ViewModel
           public CourseVM()
           {
                AddCourseCommand = new RelayCommand(AddCourse, AddCourseCanExecute);
+               AddSessionCommand = new RelayCommand(AddSession, AddSessionCanExecute);
                UpdateData();
           }
 
@@ -28,6 +29,18 @@ namespace StudyHabit.ViewModel
                     NotifyPropertyChanged();
                }
           }
+
+          private List<StudySession> _sessionList;
+          public List<StudySession> SessionList 
+          {
+                get { return _sessionList; }
+                set
+                {
+                    _sessionList = value;
+                    NotifyPropertyChanged();
+                }
+          }
+
 
           private Course _selectedCourse;
 
@@ -66,19 +79,32 @@ namespace StudyHabit.ViewModel
                }
           }
 
+          private bool _isUserAddingSession = false;
+
+          public bool IsUserAddingSession
+          {
+                get { return _isUserAddingSession; }
+                set
+                {
+                    _isUserAddingSession = value;
+                    NotifyPropertyChanged();
+                }
+          }
 
           public string NewCourseName { get; set; }
           public string NewCourseCode { get; set; }
           public string NewCourseType { get; set; }
           public string NewCourseTerm { get; set; }
           public string NewCourseYear { get; set; }
+          public string NewStartTime { get; set; }
+          public string NewDuration { get; set; }
+          public string NewCourseID { get; set; }
 
 
-
-          /********************************************************************
-           * CourseVM Commands and Command Properties
-           * *****************************************************************/
-          public RelayCommand AddCourseCommand { get; private set; }
+        /********************************************************************
+         * CourseVM Commands and Command Properties
+         * *****************************************************************/
+        public RelayCommand AddCourseCommand { get; private set; }
 
           public void AddCourse(object o)
           {
@@ -99,10 +125,29 @@ namespace StudyHabit.ViewModel
                else return true;
           }
 
-          /********************************************************************
-           * CourseVM Methods
-           * *****************************************************************/
-          private void UpdateData()
+          public RelayCommand AddSessionCommand { get; private set; }
+
+          public void AddSession(object o)
+          {
+                DataAccess.AddSession(NewStartTime, NewDuration, NewCourseID);
+                UpdateData();
+          }
+
+          private bool AddSessionCanExecute(object o)
+          {
+                if (
+                 string.IsNullOrWhiteSpace(NewStartTime) ||
+                 string.IsNullOrWhiteSpace(NewDuration) ||
+                 string.IsNullOrWhiteSpace(NewCourseID)
+                )
+                return false;
+                else return true;
+          }
+
+        /********************************************************************
+         * CourseVM Methods
+         * *****************************************************************/
+        private void UpdateData()
           {
                DataTable courseTable = DataAccess.GetCourses();
                List<Course> courseList = new List<Course>();
@@ -119,6 +164,18 @@ namespace StudyHabit.ViewModel
                }
 
                CourseList = courseList;
+
+               DataTable sessionTable = DataAccess.GetStudySession();
+               List<StudySession> sessionList = new List<StudySession>();
+
+               foreach (DataRow row in sessionTable.Rows)
+               {
+                    sessionList.Add(new StudySession(
+                        (int)row["Duration"],
+                        (int)row["CouseID"]));
+               }
+
+               SessionList = sessionList;
           }
      }
 }
