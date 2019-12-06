@@ -16,6 +16,7 @@
                     
                </TabItem>
             <TabItem Header="Study">
+                <View:StudySessionView/>
             </TabItem>
           </TabControl>
           <View:LoginView x:Name="Login"/>

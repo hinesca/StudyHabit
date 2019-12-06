@@ -109,8 +109,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\FlashCardDeck.cs" />
+    <Compile Include="ViewModel\FlashCardVM.cs" />
     <Compile Include="View\AddStudySessionView.xaml.cs">
       <DependentUpon>AddStudySessionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FlashCardView.xaml.cs">
+      <DependentUpon>FlashCardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StudySessionView.xaml.cs">
       <DependentUpon>StudySessionView.xaml</DependentUpon>
@@ -124,6 +128,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\CourseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FlashCardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

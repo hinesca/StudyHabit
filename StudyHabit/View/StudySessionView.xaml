@@ -10,5 +10,37 @@
     <UserControl.Resources>
         <local:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
     </UserControl.Resources>
-    
+    <Border Background="AntiqueWhite" Padding="10">
+        <StackPanel>
+            <!-- title and time/date block here-->
+            <TextBlock Text="Study Session"/>
+            <!--add some functionailty to take class name here and put in-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--add date functionality-->
+                <TextBlock Grid.Column="0" Name="DateStudySession" Text="Date"/>
+                <TextBlock Grid.Column="1" Name="TimeRemainStudySession" Text="Time Remaining"/>
+                <!--add date functionality-->
+                <TextBlock  Grid.Column="2" Name="TimeBreakTextStudySession" Text="Time till Break"/>
+                <!--add date functionality-->
+            </Grid>
+            <!-- flash card box here-->
+          <!--  <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Quiz 1 FlashCard Deck"/>
+                <Button Grid.Column="1" Content="Quiz 2 FlashCard Deck"/>
+                <Button Grid.Column="2" Content="Quiz 3 FlashCard Deck"/>
+            </Grid>   -->
+            <Button Content="Notes"/>
+            <view:FlashCardView/>
+        </StackPanel>
+    </Border >
 </UserControl>
