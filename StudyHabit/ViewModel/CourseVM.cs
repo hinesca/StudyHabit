@@ -54,6 +54,15 @@ namespace StudyHabit.ViewModel
                }
           }
 
+          public bool isCourseSelected
+          {
+                get
+                {
+                    if (_selectedCourse == null) { return false; }
+                    else return true;
+                }
+          }
+
           private List<string> _todoList;
 
           public List<string> ToDoList

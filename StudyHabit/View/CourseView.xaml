@@ -47,6 +47,35 @@
                   <ComboBoxItem Content="C"/>
               </ComboBox>
           </DockPanel>
-          <Expander DockPanel.Dock="Top"/>
+        <DockPanel DockPanel.Dock="Top">
+            <CheckBox
+            IsChecked="{Binding IsUserAddingSession}"
+            Content="Add New Study Session" DockPanel.Dock="Top"/>
+            <view:AddStudySessionView DockPanel.Dock="Top"/>
+            <ListView
+            x:Name="SessionLV"
+            ItemsSource="{Binding SessionList}"
+            DockPanel.Dock="Top"
+            HorizontalAlignment="Stretch"
+            Padding="5">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel
+                        Background="LightSteelBlue">
+                            <TextBlock Text="{Binding Duration}"/>
+                            <TextBlock Text="{Binding CourseID}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            <DockPanel DockPanel.Dock="Top"/>
+        </DockPanel>
+        <Expander DockPanel.Dock="Top"/>
     </DockPanel>
 </UserControl>
