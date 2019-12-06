@@ -100,5 +100,28 @@ namespace StudyHabit
                 string sql = "select * from StudySession";
                 return GetData(sql);
           }
+
+
+          public static DataTable AddFlashCard(int courseID, string question, string answer)
+          {
+            string sql =
+                "insert into FlashCard(CourseID, Question, Answer)" +
+                $"values('{courseID}', '{question}', '{answer}')";
+            return GetData(sql);
+          }
+
+          public static DataTable GetAllFlashCards()
+          {
+                string sql = "select * from FlashCard";
+                return GetData(sql);
+          }
+
+          public static DataTable GetCourseFlashCards(int courseID)
+          {
+                string sql =
+                    $"select * from FlashCard where CourseID={courseID}";
+                return GetData(sql);
+          }
+
      }
 }
