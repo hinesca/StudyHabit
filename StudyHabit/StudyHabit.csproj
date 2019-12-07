@@ -109,7 +109,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\FlashCardDeck.cs" />
+    <Compile Include="Model\FlashCardDeck.cs" />
     <Compile Include="ViewModel\FlashCardVM.cs" />
     <Compile Include="View\AddStudySessionView.xaml.cs">
       <DependentUpon>AddStudySessionView.xaml</DependentUpon>

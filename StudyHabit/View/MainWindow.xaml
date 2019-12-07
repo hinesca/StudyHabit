@@ -6,9 +6,10 @@
         xmlns:View="clr-namespace:StudyHabit.View"
         xmlns:ViewModel="clr-namespace:StudyHabit.ViewModel"
         mc:Ignorable="d"
+        Background="AntiqueWhite"
         Title="MainWindow" Height="400" Width="200">
      <Grid>
-          <TabControl x:Name="Tabs" Visibility="Hidden">
+          <TabControl x:Name="Tabs" Visibility="Hidden" Background="AntiqueWhite">
                <TabItem Header="Courses">
                     <View:CourseView/>
                </TabItem>

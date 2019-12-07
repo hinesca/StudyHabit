@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:StudyHabit"
              xmlns:view="clr-namespace:StudyHabit.View"
              mc:Ignorable="d"
+             Background="AntiqueWhite"
              d:DesignHeight="350" Width="175">
      <UserControl.Resources>
           <local:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
