@@ -86,6 +86,7 @@
     </Reference>
     <Reference Include="System.Data.SQLite.EF6, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.EF6.1.0.112.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.112.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
@@ -108,7 +109,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\FlashCardDeck.cs" />
+    <Compile Include="ViewModel\FlashCardDeck.cs" />
     <Compile Include="ViewModel\FlashCardVM.cs" />
     <Compile Include="View\AddStudySessionView.xaml.cs">
       <DependentUpon>AddStudySessionView.xaml</DependentUpon>
@@ -132,8 +133,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FlashCardView.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
